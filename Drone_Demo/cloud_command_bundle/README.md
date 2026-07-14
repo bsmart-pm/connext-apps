@@ -25,6 +25,21 @@ This folder is a self-contained export of the cloud command demo.
 6. Run `./run_cloud_command.sh`.
 7. A browser tab should open automatically with the dashboard.
 
+## Install RTI Connext into the bundle venv
+
+If you already have the RTI Connext Python wheel on disk, install it directly into the bundle virtual environment:
+
+```sh
+cd /path/to/cloud_command_bundle
+./setup_venv.sh
+source .venv/bin/activate
+export RTI_CONNEXT_WHEEL=/path/to/rti_connext-7.7.0-<platform>.whl
+python -m pip install "$RTI_CONNEXT_WHEEL"
+python -c "import rti.connextdds as dds; print(dds.__file__)"
+```
+
+If you installed RTI Connext DDS from the full RTI distribution instead of using a wheel, make sure the Connext environment is active before launching the demo. On macOS that usually means setting `RTI_LICENSE_FILE` and adding the RTI `lib` directory to `DYLD_LIBRARY_PATH` or sourcing RTI's environment setup script.
+
 ## Notes
 
 - The dashboard listens on `127.0.0.1` and picks a free port automatically.
