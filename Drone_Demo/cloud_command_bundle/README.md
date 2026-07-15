@@ -12,33 +12,25 @@ This folder is a self-contained export of the cloud command demo.
 ## What you need on the new computer
 
 - Python 3.10 or newer
-- RTI Connext DDS 7.7.0 installed on the machine, or the matching Python wheel available locally
-- A valid RTI license file available through `RTI_LICENSE_FILE`
+- The RTI Connext DDS Python wheel for your platform, available locally
+- A valid RTI license file is already included in this bundle as `rti_license.dat`
 
 ## Step-by-step setup
 
 1. Copy this entire folder to the new computer.
 2. Open Terminal and change into the folder.
-3. If you have a local RTI Python wheel, set `RTI_CONNEXT_WHEEL` to that file path.
-4. Run `./setup_venv.sh`.
-5. If the script reports that the import failed even though pip said the wheel was already installed, the machine still needs the native RTI Connext runtime and/or the RTI library path and license file configured.
-6. Run `./run_cloud_command.sh`.
-7. A browser tab should open automatically with the dashboard.
+3. Create a local virtual environment in this folder, for example `python3 -m venv .venv`.
+4. Activate that virtual environment with `source .venv/bin/activate`.
+5. Install the RTI Connext Python wheel into that virtual environment with `python -m pip install /path/to/rti_connext-7.7.0-<platform>.whl`.
+6. Point `RTI_LICENSE_FILE` at the bundled license file, for example `export RTI_LICENSE_FILE="$PWD/rti_license.dat"`.
+7. Run `./run_cloud_command.sh`.
+8. A browser tab should open automatically with the dashboard.
 
-## Install RTI Connext into the bundle venv
+## Optional helper script
 
-If you already have the RTI Connext Python wheel on disk, install it directly into the bundle virtual environment:
+If you prefer a one-step helper, you can still run `./setup_venv.sh`. It creates the bundle virtual environment, upgrades `pip`, and checks that the RTI Python import works.
 
-```sh
-cd /path/to/cloud_command_bundle
-./setup_venv.sh
-source .venv/bin/activate
-export RTI_CONNEXT_WHEEL=/path/to/rti_connext-7.7.0-<platform>.whl
-python -m pip install "$RTI_CONNEXT_WHEEL"
-python -c "import rti.connextdds as dds; print(dds.__file__)"
-```
-
-If you installed RTI Connext DDS from the full RTI distribution instead of using a wheel, make sure the Connext environment is active before launching the demo. On macOS that usually means setting `RTI_LICENSE_FILE` and adding the RTI `lib` directory to `DYLD_LIBRARY_PATH` or sourcing RTI's environment setup script.
+That helper still expects the RTI wheel or RTI runtime to already be available on the machine; it does not install RTI Connext itself.
 
 ## Notes
 

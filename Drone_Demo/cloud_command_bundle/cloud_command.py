@@ -14,7 +14,7 @@ import webbrowser
 import rti.asyncio
 import rti.connextdds as dds
 
-from Drone_Demo.fleet_common import (
+from fleet_common import (
 	COMMAND_ACTIONS,
 	COMMAND_PARTICIPANT,
 	DRONE_IDS,
