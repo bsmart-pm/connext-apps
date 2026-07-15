@@ -6,8 +6,8 @@ This folder is a self-contained export of the cloud command demo.
 
 - `cloud_command.py`
 - `fleet_common.py`
-- `setup_venv.sh`
 - `run_cloud_command.sh`
+- `rti_license.dat`
 
 ## What you need on the new computer
 
@@ -26,11 +26,14 @@ This folder is a self-contained export of the cloud command demo.
 7. Run `./run_cloud_command.sh`.
 8. A browser tab should open automatically with the dashboard.
 
-## Optional helper script
+## Connext Cloud
+Connext Cloud Connection, requires 7.7 installation with a license file in the installation location of 7.7
 
-If you prefer a one-step helper, you can still run `./setup_venv.sh`. It creates the bundle virtual environment, upgrades `pip`, and checks that the RTI Python import works.
+1. Install RTI Connext Cloud CLI, brew tap realtimeinnovations/tap && brew install rticloud
+2. Run rticloud configure
+3. Run rticloud login
+4. Run rticloud gateway command
 
-That helper still expects the RTI wheel or RTI runtime to already be available on the machine; it does not install RTI Connext itself.
 
 ## Notes
 
